@@ -1,0 +1,17 @@
+{
+  "name": "Daytrip",
+  "short_name": "Daytrip",
+  "description": "Turn a Google Maps list into a day-by-day trip",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F1E8",
+  "theme_color": "#3D3428",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
