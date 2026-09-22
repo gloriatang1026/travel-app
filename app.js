@@ -1,16 +1,4 @@
 const THEMES = {
-  dumbo: {
-    name: "Dumbo",
-    line: "Ears out. Let's go.",
-    bg: "#f7f1e8",
-    stage: "#e7dccb",
-    card: "#fffaf3",
-    ink: "#3d3428",
-    muted: "#7a6d5e",
-    accent: "#c4843c",
-    soft: "#f3e2cc",
-    pins: ["#c4843c", "#6f93b8", "#c46b6b", "#7e9a62", "#b08968", "#5e7c99"],
-  },
   sadness: {
     name: "Sadness",
     line: "Slow is a fine speed.",
@@ -22,18 +10,6 @@ const THEMES = {
     accent: "#3d7ec4",
     soft: "#d7e8f8",
     pins: ["#3d7ec4", "#7aa2d4", "#5b6ea6", "#89b7c9", "#4f86a8", "#6d8cae"],
-  },
-  miguel: {
-    name: "Miguel",
-    line: "Follow the warm light.",
-    bg: "#fff3e4",
-    stage: "#f3ddc4",
-    card: "#fff9f2",
-    ink: "#3a2416",
-    muted: "#8a6248",
-    accent: "#e36b2c",
-    soft: "#ffe0c2",
-    pins: ["#e36b2c", "#e0a100", "#c4533a", "#d9893b", "#a85a3a", "#c47b4a"],
   },
   sulley: {
     name: "Sulley",
@@ -61,7 +37,7 @@ const PACKING = [
 ];
 
 const state = {
-  theme: "dumbo",
+  theme: "sadness",
   screen: "today",
   sheet: null,
   placeId: null,
@@ -406,81 +382,36 @@ function weatherText(code) {
 }
 
 const CHARACTER_PHOTOS = {
-  dumbo: [
-    "dumbo/01_dumbo_walking.png",
-    "dumbo/02_dumbo_flying_balloon.png",
-    "dumbo/03_dumbo_sitting.png",
-    "dumbo/04_dumbo_sitting_blue_hat.png",
-    "dumbo/05_dumbo_with_mother.png",
-  ],
   sadness: [
     "sadness/01_sadness_standing.png",
     "sadness/02_sadness_crying.png",
     "sadness/03_sadness_memory_orb.png",
-    "sadness/04_sadness_closeup.png",
-    "sadness/05_sadness_lying_down.png",
+  ],
+  sulley: [
+    "sulley/01_sulley_waving_jacket.png",
+    "sulley/02_sulley_arms_out_jacket.png",
+    "sulley/03_sulley_standing_no_jacket.png",
   ],
 };
 
 function mascot(id, pose = 0) {
-  const photos = CHARACTER_PHOTOS[id];
-  if (photos) {
-    const src = photos[Math.abs(pose) % photos.length];
-    return `<img class="mascot photo" src="/${src}" alt="" draggable="false">`;
-  }
-  if (id === "sadness") {
-    return `<svg class="mascot" viewBox="0 0 160 160" aria-hidden="true">
-      <ellipse cx="80" cy="142" rx="36" ry="8" fill="#000" opacity=".08"/>
-      <path d="M80 22c0 0 40 48 40 78a40 40 0 1 1-80 0c0-30 40-78 40-78z" fill="#8eb7e8"/>
-      <path d="M80 40c0 0 22 32 22 54a22 22 0 1 1-44 0c0-22 22-54 22-54z" fill="#c5ddf6" opacity=".55"/>
-      <circle cx="66" cy="96" r="4" fill="#1e3a5f"/>
-      <circle cx="94" cy="98" r="4" fill="#1e3a5f"/>
-      <path d="M70 112q10 6 20-2" fill="none" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round"/>
-      <path d="M46 48c8-10 16-8 18 0" fill="none" stroke="#d7e8f8" stroke-width="4" stroke-linecap="round"/>
-    </svg>`;
-  }
-  if (id === "miguel") {
-    return `<svg class="mascot" viewBox="0 0 160 160" aria-hidden="true">
-      <ellipse cx="80" cy="142" rx="36" ry="8" fill="#000" opacity=".08"/>
-      <g fill="#f2c14e">
-        <ellipse cx="80" cy="70" rx="16" ry="28" transform="rotate(0 80 78)"/>
-        <ellipse cx="80" cy="70" rx="16" ry="28" transform="rotate(60 80 78)"/>
-        <ellipse cx="80" cy="70" rx="16" ry="28" transform="rotate(120 80 78)"/>
-      </g>
-      <circle cx="80" cy="84" r="28" fill="#ffd7a8"/>
-      <circle cx="70" cy="82" r="3.5" fill="#3a2416"/>
-      <circle cx="90" cy="82" r="3.5" fill="#3a2416"/>
-      <path d="M74 94q6 6 12 0" fill="none" stroke="#c4533a" stroke-width="3" stroke-linecap="round"/>
-      <rect x="108" y="96" width="8" height="28" rx="3" fill="#8a4b2a"/>
-      <path d="M116 100c16 2 18 22 0 26" fill="none" stroke="#3a2416" stroke-width="3"/>
-    </svg>`;
-  }
-  if (id === "sulley") {
-    return `<svg class="mascot" viewBox="0 0 160 160" aria-hidden="true">
-      <ellipse cx="80" cy="144" rx="40" ry="8" fill="#000" opacity=".08"/>
-      <path d="M48 58c-2-18 10-28 16-18" fill="none" stroke="#7d6bb5" stroke-width="8" stroke-linecap="round"/>
-      <path d="M112 58c2-18-10-28-16-18" fill="none" stroke="#7d6bb5" stroke-width="8" stroke-linecap="round"/>
-      <rect x="40" y="62" width="80" height="72" rx="36" fill="#1f8a78"/>
-      <ellipse cx="80" cy="108" rx="24" ry="18" fill="#f4fffc"/>
-      <circle cx="66" cy="92" r="5" fill="#14332e"/>
-      <circle cx="96" cy="92" r="5" fill="#14332e"/>
-      <path d="M70 108q10 10 22 0" fill="none" stroke="#14332e" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="52" cy="84" r="5" fill="#b7e2d4"/>
-      <circle cx="112" cy="100" r="4" fill="#b7e2d4"/>
-    </svg>`;
-  }
-  return `<svg class="mascot" viewBox="0 0 160 160" aria-hidden="true">
-    <ellipse cx="80" cy="142" rx="38" ry="8" fill="#000" opacity=".08"/>
-    <ellipse cx="36" cy="78" rx="24" ry="32" fill="#b9d4ee"/>
-    <ellipse cx="124" cy="78" rx="24" ry="32" fill="#b9d4ee"/>
-    <circle cx="80" cy="84" r="38" fill="#f6e7c8"/>
-    <circle cx="66" cy="80" r="4" fill="#3d3428"/>
-    <circle cx="94" cy="80" r="4" fill="#3d3428"/>
-    <ellipse cx="56" cy="92" rx="6" ry="3" fill="#f0b7a8"/>
-    <ellipse cx="104" cy="92" rx="6" ry="3" fill="#f0b7a8"/>
-    <path d="M80 90c0 14-12 20-16 18" fill="none" stroke="#e2c99a" stroke-width="6" stroke-linecap="round"/>
-    <path d="M58 112c16 8 30 8 46 0" fill="none" stroke="#e7b15a" stroke-width="6" stroke-linecap="round"/>
-  </svg>`;
+  const photos = CHARACTER_PHOTOS[id] || CHARACTER_PHOTOS.sadness;
+  const src = photos[Math.abs(pose) % photos.length];
+  return `<img class="mascot photo" src="/${src}" alt="" draggable="false">`;
+}
+
+function formatDuration(minutes) {
+  const amount = Number(minutes);
+  if (!amount) return "";
+  const hours = Math.floor(amount / 60);
+  const rest = amount % 60;
+  if (!hours) return `${rest} min`;
+  if (!rest) return `${hours} hr`;
+  return `${hours} hr ${rest} min`;
+}
+
+function dayMinutes(stops) {
+  return stops.reduce((sum, place) => sum + (Number(place.duration) || 0), 0);
 }
 
 function icon(name) {
@@ -520,12 +451,12 @@ function render() {
 function topHTML() {
   if (!state.trip) {
     return `<header class="top"><div><p class="eyebrow">Daytrip</p><h1>Your list, in days.</h1></div>
-      <button class="icon-btn" data-action="themes" aria-label="Choose a companion">${icon("palette")}</button></header>`;
+      <button class="icon-btn" data-action="themes" aria-label="Switch user">${icon("palette")}</button></header>`;
   }
   const count = dayCount(state.trip);
   return `<header class="top"><div style="flex:1;min-width:0"><p class="eyebrow">${count} day${count === 1 ? "" : "s"} · ${state.trip.places.length} places</p>
       <input class="title-input" data-field="trip-name" aria-label="Trip name" value="${esc(state.trip.name)}"></div>
-      <button class="icon-btn" data-action="themes" aria-label="Choose a companion">${icon("palette")}</button></header>`;
+      <button class="icon-btn" data-action="themes" aria-label="Switch user">${icon("palette")}</button></header>`;
 }
 
 function viewHTML() {
@@ -578,7 +509,7 @@ function stopHTML(place, when, withMove) {
       <button type="button" class="stop-hit" data-action="open-place" data-id="${esc(place.id)}">
         ${thumb}
         <span><strong>${esc(place.name)}</strong>
-        <span class="stop-kind">${esc(kindOf(place.name))}${place.hours ? " · hours" : ""}${place.note ? " · note" : ""}</span>
+        <span class="stop-kind">${esc(kindOf(place.name))}${place.duration ? ` · ${esc(formatDuration(place.duration))}` : ""}${place.note ? " · note" : ""}</span>
         ${place.why ? `<span class="why">${esc(place.why)}</span>` : ""}</span>
       </button>
       ${handle}</div>`;
@@ -594,7 +525,7 @@ function daysHTML() {
         <button type="button" class="drag" data-drag="day" data-day="${day}" aria-label="Drag day">⋮⋮</button>
         <div>
         <p class="kicker">Day ${day + 1}</p><h3>${esc(dayTitle(stops))}</h3>
-        <p>${esc(prettyDate(addDays(state.trip.startDate, day)))} · ${stops.length} stops</p>
+        <p>${esc(prettyDate(addDays(state.trip.startDate, day)))} · ${stops.length} stops${dayMinutes(stops) ? ` · ${esc(formatDuration(dayMinutes(stops)))}` : ""}</p>
         ${total > 1 ? `<button type="button" class="text-link" data-action="remove-day" data-day="${day}">Remove this day</button>` : ""}
       </div>${mascot(state.theme, day)}</div><div class="day-body">${body}</div></article>`);
   }
@@ -712,10 +643,10 @@ function themeSheet() {
       ${mascot(id)}<strong>${esc(item.name)}</strong><span>${esc(item.line)}</span></button>`).join("");
   return `<div class="sheet-back" data-action="close-sheet"><div class="sheet" data-keep>
       <div class="handle"></div>
-      <p class="eyebrow">Companion</p>
-      <h2>Who comes along?</h2>
+      <p class="eyebrow">User</p>
+      <h2>Sadness or Sulley.</h2>
       <div class="themes">${cards}</div>
-      <p class="fine">Dumbo and Sadness use the photos from your folders. Miguel and Sulley stay as simple drawings.</p>
+      <p class="fine">Two users. The colours and the photo follow whoever is planning.</p>
     </div></div>`;
 }
 
@@ -768,9 +699,11 @@ function placeSheet() {
       <div class="pair">
         <div class="field"><label for="ptime">Time</label>
           <input id="ptime" type="time" data-field="place-time" data-id="${esc(place.id)}" value="${esc(place.time || "")}"></div>
-        <div class="field"><label for="daypick">Day</label>
-          <select id="daypick" data-field="day" data-id="${esc(place.id)}">${options.join("")}</select></div>
+        <div class="field"><label for="pduration">Duration (minutes)</label>
+          <input id="pduration" type="number" min="5" max="720" step="5" data-field="place-duration" data-id="${esc(place.id)}" value="${esc(place.duration || "")}"></div>
       </div>
+      <div class="field"><label for="daypick">Day</label>
+        <select id="daypick" data-field="day" data-id="${esc(place.id)}">${options.join("")}</select></div>
       <div class="field"><label for="note">Note</label>
         <textarea id="note" rows="3" data-field="note" data-id="${esc(place.id)}" placeholder="Why this stop, or what to order">${esc(place.note)}</textarea></div>
       <div class="detail-actions">
@@ -1317,7 +1250,8 @@ function planText() {
     });
     stops.forEach((place, index) => {
       const when = place.time ? formatClock(place.time) : clock(index, stops.length);
-      lines.push(`${when}  ${place.name}${place.note ? ` — ${place.note}` : ""}`);
+      const stay = place.duration ? ` (${formatDuration(place.duration)})` : "";
+      lines.push(`${when}  ${place.name}${stay}${place.note ? ` — ${place.note}` : ""}`);
     });
     lines.push("");
   }
@@ -1571,10 +1505,12 @@ function onInput(event) {
     }
     return;
   }
-  if (field === "place-time") {
+  if (field === "place-time" || field === "place-duration") {
     const place = findPlace(event.target.dataset.id);
     if (place) {
-      place.time = event.target.value;
+      place[field === "place-time" ? "time" : "duration"] = field === "place-duration"
+        ? Number(event.target.value) || ""
+        : event.target.value;
       save();
     }
     return;

@@ -210,12 +210,27 @@ function guideFor(name) {
   return found ? PLACE_GUIDE[found] : null;
 }
 
+function guessMinutes(name) {
+  const text = normName(name);
+  if (/roys peak/.test(text)) return 360;
+  if (/milford sound/.test(text)) return 180;
+  if (/horse|trek/.test(text)) return 120;
+  if (/glacier|skyline|glenorchy|christchurch|queenstown|wanaka|皇后/.test(text)) return 90;
+  if (/lookout|church|playground|sequoia|willow|hwy|highway/.test(text)) return 30;
+  if (/coffee|cafe|bakery|bagel|crepe/.test(text)) return 45;
+  if (/burger|restaurant|salmon/.test(text)) return 75;
+  if (/lake|scenic/.test(text)) return 60;
+  return 60;
+}
+
 function applyGuide(place) {
   const guide = guideFor(place.name);
-  if (!guide) return place;
-  if (!place.description) place.description = guide.description;
-  if (!place.hours) place.hours = guide.hours;
-  if (!place.photo && guide.photo) place.photo = guide.photo;
-  if (!place.wiki && guide.wiki) place.wiki = guide.wiki;
+  if (guide) {
+    if (!place.description) place.description = guide.description;
+    if (!place.hours) place.hours = guide.hours;
+    if (!place.photo && guide.photo) place.photo = guide.photo;
+    if (!place.wiki && guide.wiki) place.wiki = guide.wiki;
+  }
+  if (place.duration == null || place.duration === "") place.duration = guessMinutes(place.name);
   return place;
 }

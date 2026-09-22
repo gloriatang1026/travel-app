@@ -6,7 +6,7 @@ Hosting matches Gym Tracker: one web app, added to the iPhone home screen. Gym T
 
 ## Start
 
-The app lives in this folder, with the Dumbo and Sadness photos beside it.
+The app lives in this folder. The two users are Sadness and Sulley, and their photos sit beside the app.
 
 ```bash
 python serve.py
@@ -30,4 +30,4 @@ On Days, tap Add flight. The card shows on the departure day and, if you land th
 
 ## Companions
 
-Dumbo, Sadness, Miguel, and Sulley are names for four original drawings. They are not Disney or Pixar characters.
+Only two users: Sadness and Sulley. Switch with the star at the top right. Each place has a duration in minutes, shown on the day and editable on the place card.
